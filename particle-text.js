@@ -119,7 +119,7 @@
         if (data[(y * width + x) * 4 + 3] > 60) targets.push({ x, y });
       }
     }
-    const limit = width < 640 ? 1900 : 4000;
+    const limit = width < 640 ? 1400 : 2800;
     const stride = Math.max(1, Math.ceil(targets.length / limit));
     const chosen = targets.filter((_, i) => i % stride === 0);
 

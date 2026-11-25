@@ -6,7 +6,7 @@
   const i18n = {
     ru: {
       'meta.title': 'МЮЗИКБОГС — Музыка богов. Эфир 24/7',
-      'meta.desc': 'МЮЗИКБОГС — интернет-радиостанция. Музыка богов: миксы, лекции, пластинки, рецензии, интервью и обзоры фестивалей. Эфир 24/7.',
+      'meta.desc': 'МЮЗИКБОГС — золотой эфир. Музыка богов: миксы, лекции, пластинки, рецензии, интервью и обзоры фестивалей. Эфир 24/7.',
       'a11y.skip': 'Перейти к содержимому',
       'a11y.listen': 'Слушать эфир',
       'a11y.menuOpen': 'Открыть меню',
@@ -42,7 +42,10 @@
       'hero.tag1': 'ВИНИЛ', 'hero.tag2': 'АВТОРСКИЕ МИКСЫ',
       'hero.tag3': 'РЕДКИЕ НАХОДКИ', 'hero.tag4': 'БЕЗ РЕКЛАМЫ',
       'hero.tagline': 'МУЗЫКА <span>БОГОВ</span><br />для тех, кто слушает внимательно',
-      'hero.desc': 'Неон, винил и хороший шум. Авторские миксы, разговоры о музыке и всё, что между ними — круглосуточно.',
+      'strip.1': 'МЮЗИКБОГС · ЗОЛОТОЙ ЭФИР', 'strip.2': '60s — 70s — 80s — 90s',
+      'strip.3': 'БЕЗ РЕКЛАМЫ · 24/7', 'strip.4': 'ВИНИЛ · HQ STEREO',
+      'decade.now': 'СЕЙЧАС',
+      'hero.desc': 'Латунь, винил и хороший шум. Авторские миксы, разговоры о музыке и всё, что между ними — круглосуточно.',
       'hero.browse': 'СМОТРЕТЬ КОНТЕНТ',
       'hero.meta1': 'в эфире', 'hero.meta2': 'рубрик', 'hero.meta3': 'звук',
       'play.listen': 'СЛУШАТЬ', 'play.start': 'ВКЛЮЧИТЬ ЭФИР',
@@ -112,7 +115,7 @@
     },
     en: {
       'meta.title': 'MUZIKBOGS — Music of the Gods. On air 24/7',
-      'meta.desc': 'MUZIKBOGS — internet radio. Music of the gods: mixes, lectures, vinyl, reviews, interviews and festival reports. On air 24/7.',
+      'meta.desc': 'MUZIKBOGS — golden hour radio. Music of the gods: mixes, lectures, vinyl, reviews, interviews and festival reports. On air 24/7.',
       'a11y.skip': 'Skip to content',
       'a11y.listen': 'Listen live',
       'a11y.menuOpen': 'Open menu',
@@ -148,7 +151,10 @@
       'hero.tag1': 'VINYL', 'hero.tag2': 'ORIGINAL MIXES',
       'hero.tag3': 'RARE FINDS', 'hero.tag4': 'NO ADS',
       'hero.tagline': 'MUSIC <span>OF THE GODS</span><br />for those who really listen',
-      'hero.desc': 'Neon, vinyl and good noise. Original mixes, conversations about music and everything in between — around the clock.',
+      'strip.1': 'MUZIKBOGS · GOLDEN HOUR RADIO', 'strip.2': '60s — 70s — 80s — 90s',
+      'strip.3': 'NO ADS · 24/7', 'strip.4': 'VINYL · HQ STEREO',
+      'decade.now': 'NOW',
+      'hero.desc': 'Brass, vinyl and good noise. Original mixes, conversations about music and everything in between — around the clock.',
       'hero.browse': 'EXPLORE CONTENT',
       'hero.meta1': 'on air', 'hero.meta2': 'columns', 'hero.meta3': 'sound',
       'play.listen': 'LISTEN', 'play.start': 'START STREAM',
@@ -592,8 +598,9 @@
   }
 
   function drawSpectrum() {
+    // Не держим анимационный цикл, когда панель закрыта
+    if (eqPanel.hidden || !analyser) { rafId = null; return; }
     rafId = requestAnimationFrame(drawSpectrum);
-    if (eqPanel.hidden || !analyser) return;
     const g = eqCanvas.getContext('2d');
     const w = eqCanvas.width, h = eqCanvas.height;
     g.clearRect(0, 0, w, h);
