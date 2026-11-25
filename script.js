@@ -426,7 +426,7 @@
     applyTheme();
   });
 
-  /* ---------- Плеер: звук из видео через YouTube IFrame API ---------- */
+  /* ---------- Плеер: звук из файла эфира, видео — визуальный фон ---------- */
   const VIDEO_DURATION = 214;
 
   const progressFill = document.getElementById('progress-fill');
