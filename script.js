@@ -21,15 +21,15 @@
       'a11y.videoVolume': 'Громкость видео',
       'a11y.videoMute': 'Выключить звук видео',
       'a11y.videoUnmute': 'Включить звук видео',
-      'stream.idle': 'ВИДЕО · NEON LIGHTS · НАЖМИТЕ «СЛУШАТЬ»',
+      'stream.idle': 'ЭФИР ГОТОВ · НАЖМИТЕ «СЛУШАТЬ»',
       'stream.connecting': 'ПОДГОТОВКА ЗВУКА…',
-      'stream.buffering': 'БУФЕРИЗАЦИЯ…',
-      'stream.live': 'ЗВУК ИЗ ВИДЕО · NEON LIGHTS · WOOLSCAPES',
+      'stream.buffering': 'ПОДГОТОВКА ЭФИРА…',
+      'stream.live': 'ЭФИР · МЮЗИКБОГС · HQ STEREO',
       'stream.error': 'ЗВУК НЕ ЗАПУСТИЛСЯ · НАЖМИТЕ «СЛУШАТЬ» ЕЩЁ РАЗ',
       'eq.open': 'ОТКРЫТЬ ЭКВАЛАЙЗЕР · 10 ПОЛОС',
       'eq.title': 'ЭКВАЛАЙЗЕР',
       'eq.preset': 'ПРЕСЕТ',
-      'eq.note': 'Эквалайзер визуален: звук идёт из YouTube-видео, браузер не передаёт его в Web Audio.',
+      'eq.note': 'Эквалайзер визуален: звук идёт из файла эфира, браузер не передаёт его в Web Audio.',
       'eq.custom': 'CUSTOM', 'eq.flat': 'FLAT', 'eq.rock': 'РОК', 'eq.jazz': 'ДЖАЗ',
       'eq.vocal': 'ВОКАЛ', 'eq.night': 'НОЧЬ', 'eq.bass': 'БАС',
       'a11y.themeLight': 'Включить светлую тему',
@@ -50,7 +50,7 @@
       'hero.meta1': 'в эфире', 'hero.meta2': 'рубрик', 'hero.meta3': 'звук',
       'play.listen': 'СЛУШАТЬ', 'play.start': 'ВКЛЮЧИТЬ ЭФИР',
       'play.pause': 'ПАУЗА', 'play.card': 'СЛУШАТЬ ЭФИР',
-      'live.live': 'LIVE', 'live.now': 'СЕЙЧАС ИГРАЕТ', 'live.bitrate': 'LIVE · ВИДЕОАУДИО',
+      'live.live': 'LIVE', 'live.now': 'СЕЙЧАС ИГРАЕТ', 'live.bitrate': 'LIVE · HQ STEREO',
       'live.spec': '33⅓ RPM · STEREO · CURATED',
       'live.next': 'ДАЛЕЕ', 'live.nextValue': 'Лекторий · 11:00',
       'scroll.hint': 'ЛИСТАЙ',
@@ -69,7 +69,7 @@
       'video.lead': 'Неон, ночной город и звук, от которого хочется ехать дальше. Саундтрек нашего эфира — в одном кадре.',
       'video.caption': 'Neon Lights · Dark Synthwave — <a href="https://www.youtube.com/@WoolScapes" target="_blank" rel="noopener noreferrer">WoolScapes</a>, royalty-free. Видео подключено без автозапуска.',
       'video.cta': 'СМОТРЕТЬ НА YOUTUBE',
-      'video.volume': 'ГРОМКОСТЬ ВИДЕО',
+      'video.volume': 'ГРОМКОСТЬ ЭФИРА',
       'content.index': '02 / БИБЛИОТЕКА', 'content.title': '10 ПОВОДОВ <span>СЛУШАТЬ</span>',
       'content.lead': 'Наш контент — не просто фон. Это десять дверей в мир звука: от виниловой энциклопедии до репортажей с фестивалей.',
       'filter.all': 'ВСЁ', 'filter.audio': 'АУДИО', 'filter.text': 'ТЕКСТЫ',
@@ -130,15 +130,15 @@
       'a11y.videoVolume': 'Video volume',
       'a11y.videoMute': 'Mute video',
       'a11y.videoUnmute': 'Unmute video',
-      'stream.idle': 'VIDEO AUDIO · NEON LIGHTS · PRESS “LISTEN”',
+      'stream.idle': 'STREAM READY · PRESS “LISTEN”',
       'stream.connecting': 'PREPARING AUDIO…',
-      'stream.buffering': 'BUFFERING…',
-      'stream.live': 'VIDEO AUDIO · NEON LIGHTS · WOOLSCAPES',
+      'stream.buffering': 'PREPARING STREAM…',
+      'stream.live': 'ON AIR · MUZIKBOGS · HQ STEREO',
       'stream.error': 'AUDIO DID NOT START · PRESS “LISTEN” AGAIN',
       'eq.open': 'OPEN EQUALIZER · 10 BANDS',
       'eq.title': 'EQUALIZER',
       'eq.preset': 'PRESET',
-      'eq.note': 'The EQ is visual: audio comes from the YouTube video and browsers don’t route it through Web Audio.',
+      'eq.note': 'The EQ is visual: audio comes from the stream file and browsers don’t route it through Web Audio.',
       'eq.custom': 'CUSTOM', 'eq.flat': 'FLAT', 'eq.rock': 'ROCK', 'eq.jazz': 'JAZZ',
       'eq.vocal': 'VOCAL', 'eq.night': 'NIGHT', 'eq.bass': 'BASS',
       'a11y.themeLight': 'Switch to light theme',
@@ -159,7 +159,7 @@
       'hero.meta1': 'on air', 'hero.meta2': 'columns', 'hero.meta3': 'sound',
       'play.listen': 'LISTEN', 'play.start': 'START STREAM',
       'play.pause': 'PAUSE', 'play.card': 'LISTEN LIVE',
-      'live.live': 'LIVE', 'live.now': 'NOW PLAYING', 'live.bitrate': 'LIVE · VIDEO AUDIO',
+      'live.live': 'LIVE', 'live.now': 'NOW PLAYING', 'live.bitrate': 'LIVE · HQ STEREO',
       'live.spec': '33⅓ RPM · STEREO · CURATED',
       'live.next': 'UP NEXT', 'live.nextValue': 'Lecture Hall · 11:00',
       'scroll.hint': 'SCROLL',
@@ -178,7 +178,7 @@
       'video.lead': 'Neon, night city and a sound that makes you keep driving. The soundtrack of our stream — in one frame.',
       'video.caption': 'Neon Lights · Dark Synthwave — <a href="https://www.youtube.com/@WoolScapes" target="_blank" rel="noopener noreferrer">WoolScapes</a>, royalty-free. Video does not autoplay.',
       'video.cta': 'WATCH ON YOUTUBE',
-      'video.volume': 'VIDEO VOLUME',
+      'video.volume': 'STREAM VOLUME',
       'content.index': '02 / LIBRARY', 'content.title': '10 REASONS <span>TO LISTEN</span>',
       'content.lead': 'Our content is not just background. Ten doors into the world of sound: from a vinyl encyclopedia to festival reports.',
       'filter.all': 'ALL', 'filter.audio': 'AUDIO', 'filter.text': 'ARTICLES',
@@ -443,6 +443,7 @@
   const volumeMini = document.getElementById('volume');
   const volumeHero = document.getElementById('hero-volume');
   const muteBtn = document.getElementById('mute-btn');
+  const streamAudio = document.getElementById('stream-audio');
   let streamState = 'idle';
 
   function setStatus(state) {
@@ -472,8 +473,7 @@
 
   const fmt = s => `${String(Math.floor((s || 0) / 60)).padStart(2, '0')}:${String(Math.floor((s || 0) % 60)).padStart(2, '0')}`;
   function updateProgress() {
-    const realDuration = ytReady && ytPlayer && typeof ytPlayer.getDuration === 'function'
-      ? ytPlayer.getDuration() : 0;
+    const realDuration = streamAudio.duration || 0;
     const duration = realDuration || VIDEO_DURATION;
     const elapsed = listenSeconds % duration;
     const ratio = (elapsed / duration) * 100;
@@ -534,6 +534,7 @@
   function setVolume(value) {
     const v = parseFloat(value);
     volumeMini.value = volumeHero.value = String(v);
+    streamAudio.volume = muted ? 0 : v;
     const videoVol = document.getElementById('video-volume');
     if (videoVol) videoVol.value = String(Math.round(v * 100));
     const videoVolValue = document.getElementById('video-volume-value');
@@ -544,7 +545,10 @@
 
   function setMuted(value) {
     muted = value;
-    videoCommand(muted ? 'mute' : 'unMute');
+    streamAudio.muted = value;
+    streamAudio.volume = value ? 0 : parseFloat(volumeMini.value);
+    // Видео остаётся немым фоном: звук эфира идёт из локального аудио
+    videoCommand('mute');
     muteBtn.querySelector('span').textContent = muted ? '◖×' : '◖))';
     muteBtn.setAttribute('aria-label', muted ? t('a11y.unmute') : t('a11y.mute'));
     const vm = document.getElementById('video-mute');
@@ -656,9 +660,7 @@
 
   function startTimer() {
     timer = setInterval(() => {
-      listenSeconds = ytReady && ytPlayer && typeof ytPlayer.getCurrentTime === 'function'
-        ? ytPlayer.getCurrentTime()
-        : listenSeconds + 1;
+      listenSeconds = streamAudio.currentTime || 0;
       updateProgress();
     }, 1000);
   }
@@ -667,6 +669,7 @@
     if (value === isPlaying) return;
     if (!value) {
       pendingPlay = false;
+      streamAudio.pause();
       videoCommand('pauseVideo');
       isPlaying = false;
       clearInterval(timer); timer = null;
@@ -674,15 +677,28 @@
       updatePlayerLabels();
       return;
     }
-    playRequestedAt = Date.now();
     if (muted) setMuted(false);
     isPlaying = true;
     listenSeconds = 0;
     if (!timer) startTimer();
     setStatus('buffering');
     updatePlayerLabels();
-    // Команда идёт синхронно из обработчика клика — это сохраняет жест пользователя
-    videoCommand('playVideo');
+    // play() вызывается синхронно из обработчика клика — жест пользователя сохранён
+    streamAudio.volume = parseFloat(volumeMini.value);
+    const started = streamAudio.play();
+    if (started && typeof started.then === 'function') {
+      started.then(() => { if (isPlaying) setStatus('live'); })
+        .catch(() => {
+          if (!isPlaying) return;
+          isPlaying = false;
+          clearInterval(timer); timer = null;
+          setStatus('error');
+          updatePlayerLabels();
+        });
+    } else {
+      setStatus('live');
+    }
+    videoCommand('playVideo'); // видео — немый визуальный фон
   }
 
   document.querySelectorAll('[data-play-toggle]').forEach(btn => btn.addEventListener('click', () => setPlaying(!isPlaying)));
@@ -725,33 +741,10 @@
       events: {
         onReady: () => {
           ytReady = true;
-          ytPlayer.setVolume(Math.round(parseFloat(volumeMini.value) * 100));
-          muted ? ytPlayer.mute() : ytPlayer.unMute();
+          // Видео — только картинка. Звук идёт из локального аудиофайла эфира.
+          ytPlayer.setVolume(0);
+          ytPlayer.mute();
           if (pendingPlay) { pendingPlay = false; ytPlayer.playVideo(); }
-        },
-        onStateChange: e => {
-          const S = window.YT.PlayerState;
-          if (e.data === S.PLAYING) {
-            if (muted) setMuted(false);
-            if (!isPlaying) { isPlaying = true; updatePlayerLabels(); }
-            setStatus('live');
-            if (!timer) startTimer();
-          } else if (e.data === S.BUFFERING) {
-            if (isPlaying) setStatus('buffering');
-          } else if (e.data === S.PAUSED || e.data === S.ENDED) {
-            if (isPlaying) {
-              isPlaying = false;
-              clearInterval(timer); timer = null;
-              setStatus(Date.now() - playRequestedAt < 4000 ? 'error' : 'idle');
-              updatePlayerLabels();
-            }
-          }
-        },
-        onError: () => {
-          isPlaying = false;
-          clearInterval(timer); timer = null;
-          setStatus('error');
-          updatePlayerLabels();
         }
       }
     });
