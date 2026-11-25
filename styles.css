@@ -712,7 +712,7 @@ html[lang="ru"] .lang-ru, html[lang="en"] .lang-en { color: var(--brand); font-w
 .card-type { font-family: var(--font-display); font-size: 15px; letter-spacing: .2em; color: var(--brand); }
 .card-meta { font-family: var(--font-display); font-size: 14px; letter-spacing: .12em; color: var(--faint); margin-top: 4px; text-transform: uppercase; }
 .card h3 { font-family: var(--font-display); font-weight: 400; font-size: 27px; line-height: 1.12; text-transform: uppercase; letter-spacing: .02em; margin: 10px 0 12px; }
-.card p { color: var(--muted); font-size: 13px; margin: 0; flex: 1; }
+.card p { color: var(--muted); font-size: 13px; margin: 0; flex: 1; padding-right: 16px; }
 .card-arrow { position: absolute; right: 24px; bottom: 22px; font-size: 22px; color: var(--brand); opacity: .6; transition: .3s; }
 .card:hover .card-arrow { opacity: 1; transform: translate(4px,-4px); }
 
