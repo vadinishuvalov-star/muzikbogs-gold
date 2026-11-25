@@ -25,7 +25,7 @@
       'stream.connecting': 'ПОДГОТОВКА ЗВУКА…',
       'stream.buffering': 'БУФЕРИЗАЦИЯ…',
       'stream.live': 'ЗВУК ИЗ ВИДЕО · NEON LIGHTS · WOOLSCAPES',
-      'stream.error': 'ЗВУК НЕДОСТУПЕН · ПОВТОРИТЕ',
+      'stream.error': 'ЗВУК НЕ ЗАПУСТИЛСЯ · НАЖМИТЕ «СЛУШАТЬ» ЕЩЁ РАЗ',
       'eq.open': 'ОТКРЫТЬ ЭКВАЛАЙЗЕР · 10 ПОЛОС',
       'eq.title': 'ЭКВАЛАЙЗЕР',
       'eq.preset': 'ПРЕСЕТ',
@@ -134,7 +134,7 @@
       'stream.connecting': 'PREPARING AUDIO…',
       'stream.buffering': 'BUFFERING…',
       'stream.live': 'VIDEO AUDIO · NEON LIGHTS · WOOLSCAPES',
-      'stream.error': 'AUDIO UNAVAILABLE · TRY AGAIN',
+      'stream.error': 'AUDIO DID NOT START · PRESS “LISTEN” AGAIN',
       'eq.open': 'OPEN EQUALIZER · 10 BANDS',
       'eq.title': 'EQUALIZER',
       'eq.preset': 'PRESET',
@@ -472,10 +472,13 @@
 
   const fmt = s => `${String(Math.floor((s || 0) / 60)).padStart(2, '0')}:${String(Math.floor((s || 0) % 60)).padStart(2, '0')}`;
   function updateProgress() {
-    const elapsed = listenSeconds % VIDEO_DURATION;
-    const ratio = (elapsed / VIDEO_DURATION) * 100;
+    const realDuration = ytReady && ytPlayer && typeof ytPlayer.getDuration === 'function'
+      ? ytPlayer.getDuration() : 0;
+    const duration = realDuration || VIDEO_DURATION;
+    const elapsed = listenSeconds % duration;
+    const ratio = (elapsed / duration) * 100;
     nowTime.textContent = fmt(elapsed);
-    triadTime.textContent = `${fmt(elapsed)} / ${fmt(VIDEO_DURATION)}`;
+    triadTime.textContent = `${fmt(elapsed)} / ${fmt(duration)}`;
     progressFill.style.width = isPlaying ? `${ratio}%` : '0%';
     triadProgress.style.width = isPlaying ? `${ratio}%` : '0%';
   }
@@ -652,12 +655,18 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !eqPanel.hidden) closeEq(); });
 
   function startTimer() {
-    timer = setInterval(() => { listenSeconds++; updateProgress(); }, 1000);
+    timer = setInterval(() => {
+      listenSeconds = ytReady && ytPlayer && typeof ytPlayer.getCurrentTime === 'function'
+        ? ytPlayer.getCurrentTime()
+        : listenSeconds + 1;
+      updateProgress();
+    }, 1000);
   }
 
   function setPlaying(value) {
     if (value === isPlaying) return;
     if (!value) {
+      pendingPlay = false;
       videoCommand('pauseVideo');
       isPlaying = false;
       clearInterval(timer); timer = null;
@@ -665,13 +674,15 @@
       updatePlayerLabels();
       return;
     }
-    videoCommand('playVideo');
+    playRequestedAt = Date.now();
     if (muted) setMuted(false);
     isPlaying = true;
     listenSeconds = 0;
     if (!timer) startTimer();
-    setStatus('live');
+    setStatus('buffering');
     updatePlayerLabels();
+    // Команда идёт синхронно из обработчика клика — это сохраняет жест пользователя
+    videoCommand('playVideo');
   }
 
   document.querySelectorAll('[data-play-toggle]').forEach(btn => btn.addEventListener('click', () => setPlaying(!isPlaying)));
@@ -694,12 +705,73 @@
   muteBtn.addEventListener('click', () => setMuted(!muted));
   [volumeMini, volumeHero].forEach(slider => slider.addEventListener('input', e => { setMuted(false); setVolume(e.target.value); }));
 
-  /* ---------- Громкость видео (YouTube IFrame API) ---------- */
+  /* ---------- Видео как источник эфира: YouTube IFrame API ---------- */
   const videoFrame = document.querySelector('.video-frame iframe');
   const videoVol = document.getElementById('video-volume');
   const videoMuteBtn = document.getElementById('video-mute');
+  let ytPlayer = null, ytReady = false, pendingPlay = false, playRequestedAt = 0;
+
+  // Плеер должен быть готов к моменту нажатия кнопки — иначе браузер
+  // не считает команду playVideo пользовательским жестом и звук не идёт.
+  if (/^https?:$/.test(location.protocol) && !/localhost|127\./.test(location.hostname)) {
+    const src = new URL(videoFrame.src);
+    src.searchParams.set('origin', location.origin);
+    videoFrame.src = src.toString();
+  }
+
+  function setupYouTube() {
+    if (ytPlayer || !window.YT || !window.YT.Player) return;
+    ytPlayer = new window.YT.Player(videoFrame, {
+      events: {
+        onReady: () => {
+          ytReady = true;
+          ytPlayer.setVolume(Math.round(parseFloat(volumeMini.value) * 100));
+          muted ? ytPlayer.mute() : ytPlayer.unMute();
+          if (pendingPlay) { pendingPlay = false; ytPlayer.playVideo(); }
+        },
+        onStateChange: e => {
+          const S = window.YT.PlayerState;
+          if (e.data === S.PLAYING) {
+            if (muted) setMuted(false);
+            if (!isPlaying) { isPlaying = true; updatePlayerLabels(); }
+            setStatus('live');
+            if (!timer) startTimer();
+          } else if (e.data === S.BUFFERING) {
+            if (isPlaying) setStatus('buffering');
+          } else if (e.data === S.PAUSED || e.data === S.ENDED) {
+            if (isPlaying) {
+              isPlaying = false;
+              clearInterval(timer); timer = null;
+              setStatus(Date.now() - playRequestedAt < 4000 ? 'error' : 'idle');
+              updatePlayerLabels();
+            }
+          }
+        },
+        onError: () => {
+          isPlaying = false;
+          clearInterval(timer); timer = null;
+          setStatus('error');
+          updatePlayerLabels();
+        }
+      }
+    });
+  }
+
+  function ensureYouTubeApi() {
+    if (window.YT && window.YT.Player) { setupYouTube(); return; }
+    if (document.getElementById('yt-api')) return;
+    window.onYouTubeIframeAPIReady = setupYouTube;
+    const tag = document.createElement('script');
+    tag.id = 'yt-api';
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  }
 
   function videoCommand(func, args = []) {
+    if (ytReady && ytPlayer && typeof ytPlayer[func] === 'function') {
+      try { ytPlayer[func](...(args || [])); return; } catch (_) { /* fallthrough */ }
+    }
+    if (func === 'playVideo') pendingPlay = true;
     try {
       videoFrame.contentWindow.postMessage(
         JSON.stringify({ event: 'command', func, args }),
@@ -709,12 +781,6 @@
   }
   videoVol.addEventListener('input', e => { setVolume(parseInt(e.target.value, 10) / 100); });
   videoMuteBtn.addEventListener('click', () => { setMuted(!muted); });
-  videoFrame.addEventListener('load', () => {
-    setTimeout(() => {
-      videoCommand('setVolume', [Math.round(parseFloat(volumeMini.value) * 100)]);
-      if (muted) videoCommand('mute');
-    }, 1400);
-  });
 
   /* ---------- Табы, фильтры, поиск ---------- */
   document.querySelectorAll('.tab').forEach(tab => {
@@ -869,6 +935,7 @@
   }
 
   /* ---------- Старт ---------- */
+  ensureYouTubeApi();
   applyI18n();
   observeReveals();
   initMagicSurfaces();
