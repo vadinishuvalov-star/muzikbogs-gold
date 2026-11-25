@@ -464,8 +464,8 @@
 
   function setTrack() {
     const data = lang === 'ru'
-      ? { title: 'Неоновый свет', artist: 'WoolScapes · МЮЗИКБОГС' }
-      : { title: 'Neon Lights', artist: 'WoolScapes · МЮЗИКБОГС' };
+      ? { title: 'Золотой эфир', artist: 'МЮЗИКБОГС · Прямой эфир' }
+      : { title: 'Golden Hour Stream', artist: 'MUZIKBOGS · Live' };
     displaySong(data.title, data.artist);
     listenSeconds = 0;
     updateProgress();
@@ -725,7 +725,7 @@
   const videoFrame = document.querySelector('.video-frame iframe');
   const videoVol = document.getElementById('video-volume');
   const videoMuteBtn = document.getElementById('video-mute');
-  let ytPlayer = null, ytReady = false, pendingPlay = false, playRequestedAt = 0;
+  let ytPlayer = null, ytReady = false, pendingPlay = false;
 
   // Плеер должен быть готов к моменту нажатия кнопки — иначе браузер
   // не считает команду playVideo пользовательским жестом и звук не идёт.
