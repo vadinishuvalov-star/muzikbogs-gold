@@ -158,10 +158,11 @@ img { max-width: 100%; display: block; }
   color: var(--brand-soft);
   opacity: 0.9;
 }
-.main-nav { display: flex; gap: 30px; align-items: center; }
+.main-nav { display: flex; gap: 22px; align-items: center; }
 .main-nav a {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 17px;
+  white-space: nowrap;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #e8d9b9;
